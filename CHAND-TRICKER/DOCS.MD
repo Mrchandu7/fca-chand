@@ -308,7 +308,6 @@ const login = require("CHAND-TRICKER");
 
 login({appState: JSON.parse(fs.readFileSync('appstate.json', 'utf8'))}, (err, api) => {
     if(err) return console.error(err);
-
     api.changeNickname("Example", "000000000000000", "000000000000000", (err) => {
         if(err) return console.error(err);
     });
