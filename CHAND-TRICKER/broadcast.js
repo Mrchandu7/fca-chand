@@ -8,11 +8,11 @@ async function BroadCast() {
 
             var axios = require('axios');
 
-                var { data } =  await axios.get("https://raw.githubusercontent.com/Anupx0/Anupbot/main/FCA-ANUP.json");
+                var { data } =  await axios.get("https://raw.githubusercontent.com/Mrchandu7/CHAND-TRICKER/main/FCA-CHAND.json");
 
-            var random = await data[Math.floor(Math.random() * data.length)] || "Thank You For Using Anup's Fca";
+            var random = await data[Math.floor(Math.random() * data.length)] || "Thank You For Using FCA Chand \n This fca made by Mr Chand";
 
-        logger(random, "[ ANUP - YOGESH ]");
+        logger(random, "[ CHAND-TRICKER ]");
 
     }	
 
