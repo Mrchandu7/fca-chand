@@ -2383,7 +2383,7 @@ function getAppState(jar) {
 if (global.fca.ObjFcaConfig['encryptSt']) {
     var StateCrypt = require('./StateCrypt');
     var logger = require('./logger');
-    logger(global.fca.languages.encAppstate,'[ ANUP - YOGESH ]');
+    logger(global.fca.languages.encAppstate,'[ CHAND - TRICKER ]');
      var keyy = process.env['FBKEY'];
 
     if (process.env['FBKEY']) {
