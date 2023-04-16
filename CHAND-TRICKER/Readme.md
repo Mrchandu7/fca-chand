@@ -1,8 +1,8 @@
 ## Features
 
 ```
-Uptimerobot:
+Uptime fca: made by Mr Chand 
 ```
 ```
-SOON OTHER FEATURES
+Update again with new features 
 ```
