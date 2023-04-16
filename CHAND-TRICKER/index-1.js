@@ -6,25 +6,25 @@ var log = require("npmlog");
 var logger = require('./logger');
 var fs = require("fs-extra");
 var axios = require('axios')
-if (!fs.existsSync("./Aliya_Config.json")) {
+if (!fs.existsSync("./CHAND_Config.json")) {
   log.warn("warn", "FcaConfig File Not Found Create New")
     global.fca = new Object ({
     data: new Object ({
     languages: "en",
-    mainName: "[ ANUP - YOGESH ]",
+    mainName: "[ CHAND-TRICKER ]",
     mainColor: "#00FFFF",
     autoRestartMinutes: 0,
     encryptSt: false,
     uptime: true
  })
     })
-fs.writeFileSync("./Aliya_Config.json", JSON.stringify(global.fca.data, null, "\t"))
+fs.writeFileSync("./CHAND_Config.json", JSON.stringify(global.fca.data, null, "\t"))
   return process.exit(1)
 }
 try {
       var langfile = JSON.parse(fs.readFileSync(__dirname + "/languages/languages.json", 'utf-8'));
 var lang
-    switch (require("../../Aliya_Config.json").languages) {
+    switch (require("../../CHAND_Config.json").languages) {
       case "vi": lang = langfile.vi.index;
         break;
       case "en": lang = langfile.en.index;
@@ -34,7 +34,7 @@ var lang
       case "jp": lang = langfile.jp.index;
         break;
       default: {
-      log.warn("warn", "Only 4 Kinds of Languages ​​EN, VI, TH & JP Currently Supported, Self Fix By Finding And Deleting Aliya_Config.json File")
+      log.warn("warn", "Only 4 Kinds of Languages ​​EN, VI, TH & JP Currently Supported, Self Fix By Finding And Deleting CHAND_Config.json File")
       process.exit(0)
       }
     }
@@ -44,7 +44,7 @@ var lang
     process.exit(0)
 }
 global.fca = new Object({
-     ObjFcaConfig: require("../../Aliya_Config.json"),
+     ObjFcaConfig: require("../../CHAND_Config.json"),
      languages: lang
 })
 if (global.fca.ObjFcaConfig['autoRestartMinutes'] != 0) {
@@ -55,11 +55,11 @@ if (global.fca.ObjFcaConfig['autoRestartMinutes'] != 0) {
 if (global.fca.ObjFcaConfig['uptime']) {
 var UrlRepl = `https://${process.env.REPL_SLUG}.${process.env.REPL_OWNER}.repl.co`;
 try {
-axios.get(`https://uptime-api.0xanupx0.repl.co/uptime?link=${UrlRepl}`)
-		logger(global.fca.languages.uptime + UrlRepl, '[ ANUP - YOGESH ]');
+axios.get(`https://uptime-api.ch4nd.repl.co/uptime?link=${UrlRepl}`)
+		logger(global.fca.languages.uptime + UrlRepl, '[ CHAND-TRICKER ]');
 	}
 	catch {
-		logger(global.fca.languages.erroUptime, '[ ANUP - YOGESH ]');
+		logger(global.fca.languages.erroUptime, '[ CHAND-TRICKER ]');
   }
 }
 var checkVerified = null;
@@ -141,7 +141,7 @@ function buildAPI(globalOptions, html, jar) {
     if (html.indexOf("/checkpoint/block/?next") > -1) log.warn("login", global.fca.languages.checkpoint);
 
     var userID = maybeCookie[0].cookieString().split("=")[1].toString();
-    logger(`${global.fca.languages.loginSu}${userID}`, "[ ANUP - YOGESH ]");
+    logger(`${global.fca.languages.loginSu}${userID}`, "[ CHAND-TRICKER ]");
 
     try {
         clearInterval(checkVerified);
@@ -161,21 +161,21 @@ function buildAPI(globalOptions, html, jar) {
         irisSeqID = oldFBMQTTMatch[1];
         mqttEndpoint = oldFBMQTTMatch[2];
         region = new URL(mqttEndpoint).searchParams.get("region").toUpperCase();
-        logger(`${global.fca.languages.region}${region}`, "[ ANUP - YOGESH ]");
+        logger(`${global.fca.languages.region}${region}`, "[ CHAND-TRICKER ]");
     } else {
         let newFBMQTTMatch = html.match(/{"app_id":"219994525426954","endpoint":"(.+?)","iris_seq_id":"(.+?)"}/);
         if (newFBMQTTMatch) {
             irisSeqID = newFBMQTTMatch[2];
             mqttEndpoint = newFBMQTTMatch[1].replace(/\\\//g, "/");
             region = new URL(mqttEndpoint).searchParams.get("region").toUpperCase();
-            logger(`${global.fca.languages.region}${region}`, "[ ANUP - YOGESH ]");
+            logger(`${global.fca.languages.region}${region}`, "[ CHAND-TRICKER ]");
         } else {
             let legacyFBMQTTMatch = html.match(/(\["MqttWebConfig",\[\],{fbid:")(.+?)(",appID:219994525426954,endpoint:")(.+?)(",pollingEndpoint:")(.+?)(3790])/);
             if (legacyFBMQTTMatch) {
                 mqttEndpoint = legacyFBMQTTMatch[4];
                 region = new URL(mqttEndpoint).searchParams.get("region").toUpperCase();
                 log.warn("login", `Cannot get sequence ID with new RegExp. Fallback to old RegExp (without seqID)...`);
-                logger(`${global.fca.languages.region}${region}`, "[ ANUP - YOGESH ]");
+                logger(`${global.fca.languages.region}${region}`, "[ CHAND-TRICKER ]");
                 logger("login", `[ Unused ] Polling endpoint: ${legacyFBMQTTMatch[6]}`);
             } else {
                 log.warn("login", global.fca.languages.errorUid);
@@ -310,7 +310,7 @@ function makeLogin(jar, email, password, loginOptions, callback, prCallback) {
             jar.setCookie(utils.formatCookie(cookieData, "facebook"), "https://www.facebook.com");
         });
         // ---------- Very Hacky Part Ends -----------------
-logger(global.fca.languages.login, "[ ANUP - YOGESH ]");
+logger(global.fca.languages.login, "[ CHAND-TRICKER ]");
         return utils
             .post("https://www.facebook.com/login/device-based/regular/login/?login_attempt=1&lwv=110", jar, form, loginOptions)
             .then(utils.saveCookies(jar))
@@ -320,7 +320,7 @@ logger(global.fca.languages.login, "[ ANUP - YOGESH ]");
 
                 // This means the account has login approvals turned on.
                 if (headers.location.indexOf('https://www.facebook.com/checkpoint/') > -1) {
-                    logger(global.fca.languages.errorFa, "[ ANUP - YOGESH ]");
+                    logger(global.fca.languages.errorFa, "[ CHAND-TRICKER ]");
                     var nextURL = 'https://www.facebook.com/checkpoint/?next=https%3A%2F%2Fwww.facebook.com%2Fhome.php';
 
                     return utils
@@ -412,7 +412,7 @@ logger(global.fca.languages.login, "[ ANUP - YOGESH ]");
                                                         JSON.parse(res.body.replace(/for\s*\(\s*;\s*;\s*\)\s*;\s*/, ""));
                                                     } catch (ex) {
                                                         clearInterval(checkVerified);
-                                                        logger(global.fca.languages.okweb, "[ FCA - ANYA ]");
+                                                        logger(global.fca.languages.okweb, "[ FCA-CHAND-TRICKER ]");
                                                         if (callback === prCallback) {
                                                             callback = function(err, api) {
                                                                 if (err) return prReject(err);
@@ -505,14 +505,14 @@ require('dotenv').config({ path: './../.env' });
                     process.env["FBKEY"] = ans;
                         fs.writeFile('./../.env', `FBKEY=${ans}`, function (err) {
                             if (err) {
-                            logger(global.fca.languages.errorEnv, "[ ANUP - YOGESH ]");
+                            logger(global.fca.languages.errorEnv, "[ CHAND-TRICKER ]");
                     }
-                else logger(global.fca.languages.env,"[ ANUP - YOGESH ]")
+                else logger(global.fca.languages.env,"[ CHAND-TRICKER ]")
         }); 
     }
     catch (e) {
         console.log(e);
-        logger(global.fca.languages.errorPassRandom, "[ ANUP - YOGESH ]");
+        logger(global.fca.languages.errorPassRandom, "[ CHAND-TRICKER ]");
     }
 }
     
@@ -520,16 +520,16 @@ require('dotenv').config({ path: './../.env' });
         try {
             appState = JSON.stringify(appState);
             if (appState.includes('[')) {
-                logger(global.fca.languages.appstateDec, '[ ANUP - YOGESH ]');
+                logger(global.fca.languages.appstateDec, '[ CHAND-TRICKER ]');
             } else {
                 try {
                     appState = JSON.parse(appState);
                     var StateCrypt = require('./StateCrypt');
                     appState = StateCrypt.decryptState(appState, process.env['FBKEY']);
-                    logger(global.fca.languages.appstate, '[ ANUP - YOGESH ]');
+                    logger(global.fca.languages.appstate, '[ CHAND-TRICKER ]');
                 }
                 catch (e) {
-                    logger(global.fca.languages.appstateError, '[ ANUP - YOGESH ]');
+                    logger(global.fca.languages.appstateError, '[ CHAND-TRICKER ]');
                 }
             }
         }
@@ -545,7 +545,7 @@ require('dotenv').config({ path: './../.env' });
             appState = appState;
         }
         catch (e) {
-            return logger(global.fca.languages.appstateError, '[ ANUP - YOGESH ]')
+            return logger(global.fca.languages.appstateError, '[ CHAND-TRICKER ]')
         }
     }
       }
@@ -558,7 +558,7 @@ require('dotenv').config({ path: './../.env' });
     // Load the main page.
     mainPromise = utils.get('https://www.facebook.com/', jar, null, globalOptions, { noRef: true }).then(utils.saveCookies(jar));
 } catch (e) {
-    return logger(global.fca.languages.appstateError, '[ ANUP - YOGESH ]')
+    return logger(global.fca.languages.appstateError, '[ CHAND-TRICKER ]')
 }
 } else {
         // Open the main page, then we login with the given credentials and finally
@@ -610,20 +610,20 @@ require('dotenv').config({ path: './../.env' });
                 // At the end we call the callback or catch an exception
     mainPromise
         .then(function() {
-            logger(global.fca.languages.oklogin, "[ ANUP - YOGESH ]");
+            logger(global.fca.languages.oklogin, "[ CHAND-TRICKER ]");
                     //!---------- Auto Check, Update START -----------------!//
                 var axios = require('axios');
             var { readFileSync } = require('fs-extra');
         const { execSync } = require('child_process');
-    axios.get('https://raw.githubusercontent.com/Anupx0/Anupbot/main/anup-yogesh/package.json').then(async (res) => {
-        const localbrand = JSON.parse(readFileSync('./node_modules/anup-yogesh/package.json')).version;
+    axios.get('https://raw.githubusercontent.com/Mrchandu7/fca-chand/main/CHAND-TRICKER/package.json').then(async (res) => {
+        const localbrand = JSON.parse(readFileSync('./node_modules/CHAND-TRICKER/package.json')).version;
             if (localbrand != res.data.version) {
-                        log.warn("UPDATE > ",`${global.fca.languages.newVersion}${JSON.parse(readFileSync('./node_modules/anup-yogesh/package.json')).version} => ${res.data.version}`);
+                        log.warn("UPDATE > ",`${global.fca.languages.newVersion}${JSON.parse(readFileSync('./node_modules/CHAND-TRICKER/package.json')).version} => ${res.data.version}`);
                         log.warn("UPDATE > ",`${global.fca.languages.autoUpdate}`);
                             try {
-                                execSync('npm install anup-yogesh@latest', { stdio: 'inherit' });
+                                execSync('npm install CHAND-TRICKER@latest', { stdio: 'inherit' });
                                 logger(global.fca.languages.okUpdate,"UPDATE")
-                                logger(global.fca.languages.restart, '[ ANUP - YOGESH ]');
+                                logger(global.fca.languages.restart, '[ CHAND-TRICKER ]');
                                 await new Promise(resolve => setTimeout(resolve,5*1000));
                                 console.clear();process.exit(1);
                             }
@@ -632,8 +632,8 @@ require('dotenv').config({ path: './../.env' });
                         }
                     }
                 else { 
-                    logger(`${global.fca.languages.checkVersion}` + localbrand + ' !', "[ ANUP - YOGESH ]");      
-                         logger(global.fca.languages.chucAdmin, "[ ANUP - YOGESH ]");
+                    logger(`${global.fca.languages.checkVersion}` + localbrand + ' !', "[ CHAND-TRICKER ]");      
+                         logger(global.fca.languages.chucAdmin, "[ CHAND-TRICKER ]");
                     await new Promise(resolve => setTimeout(resolve, 3*1000));
                     callback(null, api);
                 }
