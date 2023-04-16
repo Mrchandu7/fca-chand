@@ -1,22 +1,22 @@
 {
-  "name": "anup-yogesh",
+  "name": "CHAND-TRICKER",
   "version": "1.0.1",
-  "description": "Fb-Chat Api",
+  "description": "Fb-Chat Api for Chattbot",
   "main": "index.js",
   "scripts": {
     "test": "mocha",
     "lint": "./node_modules/.bin/eslint **.js",
     "prettier": "prettier utils.js src/* --write"
   },
-  "author": "Anup Kumar",
+  "author": "CHAND TRICKER",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Anupx0/Anupbot/tree/main/anup-yogesh/issues"
+    "url": "https://github.com/Mrchandu7/fca-chand/tree/main/CHAND-TRICKER/issues"
   },
-  "homepage": "https://github.com/Anupx0/Anupbot/tree/main/anup-yogesh#readme",
+  "homepage": "https://github.com/Mrchandu7/fca-chand/tree/main/CHAND-TRICKER#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Anupx0/Anupbot/tree/main/anup-yogesh.git"
+    "url": "https://github.com/Mrchandu7/fca-chand/tree/main/CHAND-TRICKER.git"
   },
   "dependencies": {
     "aes-js": "^3.1.2",
@@ -67,8 +67,6 @@
     }
   },
   "keywords": [
-    "fca anup",
-    "fca yogesh",
-    "anup yogesh"
+    "fca-chand-tricker",
   ]
 }
